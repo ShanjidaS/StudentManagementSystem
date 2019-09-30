@@ -1,4 +1,8 @@
 {% extends "management/base.html" %}
 {% block content %}
-    <h1>Student Detail</h1>
+<div class="content-section">
+    <h1>Student Details</h1>
+    <a class="nav-item nav-link" href="{% url 'management-student-register' %}">Register new student</a>
+</div>
+    
 {% endblock content %}
