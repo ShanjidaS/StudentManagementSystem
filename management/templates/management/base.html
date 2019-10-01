@@ -64,7 +64,7 @@
         <div class="alert alert-{{ message.tags}}">
           {{ message }}
         </div>
-        {% endfor %} {% endif %} {% block content %}{% endblock %}
+        {% endfor %} {% endif %} <div class="content-section">    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-outline-primary" class>Back</a>{% block content %}{% endblock %}</div>
       </div>
     </div>
   </main>

@@ -1,0 +1,14 @@
+{% extends "management/base.html" %}
+{% block content %}
+<h2>All students</h2>
+
+{% for student in student_list %}
+
+    <li> 
+        <a href="{% url 'management-students-student-details' studentid=student.person_id %}">{{ student|safe }}</a>
+        
+    </li>
+
+{% endfor %}
+
+{% endblock content %}

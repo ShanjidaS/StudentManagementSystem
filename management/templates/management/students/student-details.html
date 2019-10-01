@@ -1,0 +1,46 @@
+{% extends "management/base.html" %} {% block content %}
+    <h2>Student Details</h2>
+    <h5>Personal Details</h5>
+    <div class="mb-2">
+        <div class="row">
+            <div class="col-4">First Name</div>
+            <div class="col-8">{{student.first_name}}</div>
+        </div>
+        <div class="row">
+            <div class="col-4">Last Name</div>
+            <div class="col-8">{{student.last_name}}</div>
+        </div>
+        <div class="row">
+            <div class="col-4">Date of Birth</div>
+            <div class="col-8">{{student.date_of_birth}}</div>
+        </div>
+        <div class="row">
+            <div class="col-4">Email</div>
+            <div class="col-8">{{student.email}}</div>
+        </div>
+        <div class="row">
+            <div class="col-4">Phone</div>
+            <div class="col-8">{{student.phone}}</div>
+        </div>
+        <div class="row">
+            <div class="col-4">Address</div>
+            <div class="col-8">{{student.address}}</div>
+        </div>
+    </div>
+
+    <h5>Degree</h5>
+    <div class="mb-2">
+        <div class="row">
+            <div class="col-4">Degree</div>
+            <div class="col-8">{{student.degree_name}}</div>
+        </div>
+        <div class="row">
+            <div class="col-4">Start Date</div>
+            <div class="col-8">{{student.start_date}}</div>
+        </div>
+        <div class="row">
+            <div class="col-4">End Date</div>
+            <div class="col-8">{{student.end_date}}</div>
+        </div>
+
+{% endblock content %}
