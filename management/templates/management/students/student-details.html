@@ -1,4 +1,5 @@
-{% extends "management/base.html" %} {% block content %}
+{% extends "management/base.html" %} 
+{% block content %}
     <h2>Student Details</h2>
     <h5>Personal Details</h5>
     <div class="mb-2">
@@ -40,7 +41,11 @@
         </div>
         <div class="row">
             <div class="col-4">End Date</div>
-            <div class="col-8">{{student.end_date}}</div>
+            <div class="col-8">{{student.end_date}}
         </div>
+        <a class="btn btn-light" href="{% url 'management-students-edit-details' studentid=student.person_id %}">Edit</a>
+    <div>
+        
+</div>
 
 {% endblock content %}
