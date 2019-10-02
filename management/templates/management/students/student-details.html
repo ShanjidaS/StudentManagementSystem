@@ -1,51 +1,58 @@
 {% extends "management/base.html" %} 
 {% block content %}
-    <h2>Student Details</h2>
+<div class=w-75>
+    <div class="float-right">
+        <a href="{% url 'management-students-edit-details' studentid=student.person_id %}" title="Edit" >
+            <i class="fa fa-edit"></i>
+        </a>
+        <a href="{% url 'management-students-delete-student' studentid=student.person_id %}" title="Delete">
+            <i class="fa fa-trash"></i>
+        </a>
+    </div>
+    <h4>Student Details</h4>
     <h5>Personal Details</h5>
-    <div class="mb-2">
+    <div class="mb-2 underlined-rows">
         <div class="row">
-            <div class="col-4">First Name</div>
-            <div class="col-8">{{student.first_name}}</div>
+            <div class="col-6">First Name</div>
+            <div class="col-6">{{student.first_name}}</div>
         </div>
         <div class="row">
-            <div class="col-4">Last Name</div>
-            <div class="col-8">{{student.last_name}}</div>
+            <div class="col-6">Last Name</div>
+            <div class="col-6">{{student.last_name}}</div>
         </div>
         <div class="row">
-            <div class="col-4">Date of Birth</div>
-            <div class="col-8">{{student.date_of_birth}}</div>
+            <div class="col-6">Date of Birth</div>
+            <div class="col-6">{{student.date_of_birth}}</div>
         </div>
         <div class="row">
-            <div class="col-4">Email</div>
-            <div class="col-8">{{student.email}}</div>
+            <div class="col-6">Email</div>
+            <div class="col-6">{{student.email}}</div>
         </div>
         <div class="row">
-            <div class="col-4">Phone</div>
-            <div class="col-8">{{student.phone}}</div>
+            <div class="col-6">Phone</div>
+            <div class="col-6">{{student.phone}}</div>
         </div>
         <div class="row">
-            <div class="col-4">Address</div>
-            <div class="col-8">{{student.address}}</div>
+            <div class="col-6">Address</div>
+            <div class="col-6">{{student.address}}</div>
         </div>
     </div>
 
     <h5>Degree</h5>
-    <div class="mb-2">
+    <div class="mb-2 underlined-rows">
         <div class="row">
-            <div class="col-4">Degree</div>
-            <div class="col-8">{{student.degree_name}}</div>
+            <div class="col-6">Degree</div>
+            <div class="col-6">{{student.degree_name}}</div>
         </div>
         <div class="row">
-            <div class="col-4">Start Date</div>
-            <div class="col-8">{{student.start_date}}</div>
+            <div class="col-6">Start Date</div>
+            <div class="col-6">{{student.start_date}}</div>
         </div>
         <div class="row">
-            <div class="col-4">End Date</div>
-            <div class="col-8">{{student.end_date}}
+            <div class="col-6">End Date</div>
+            <div class="col-6">{{student.end_date}}</div>
         </div>
-        <a class="btn btn-light" href="{% url 'management-students-edit-details' studentid=student.person_id %}">Edit</a>
-    <div>
-        
+    </div>
 </div>
 
 {% endblock content %}

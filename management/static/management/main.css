@@ -86,3 +86,7 @@ body {
   .mh-480px {
     max-height:480px;
   }
+
+  .underlined-rows > .row {
+    border-bottom:1px dashed #c1c1c1;
+  }
