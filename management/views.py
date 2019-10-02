@@ -3,6 +3,7 @@ from .forms import RegisterStudent, EditStudentDetails
 from django.contrib import messages
 from . import models
 from .models import Student
+from django.shortcuts import redirect
 
 def home(request):
     return render(request, 'management/home.html')
@@ -73,3 +74,16 @@ def student_details(request, studentid):
         'student': student
     }
     return render(request, 'management/students/student-details.html', context)
+
+def delete_student(request, studentid):
+    student = Student.objects.get(pk=studentid)
+
+    if request.method == 'POST':
+        student.delete()
+        messages.success(request, "Student successfully deleted!")
+        return redirect('management-students-view-all')
+
+    context = {
+        'student': student
+    }
+    return render(request, 'management/students/delete-student.html', context)
