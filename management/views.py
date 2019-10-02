@@ -4,6 +4,7 @@ from django.contrib import messages
 from . import models
 from .models import Student
 from django.shortcuts import redirect
+from django.core.exceptions import ObjectDoesNotExist
 
 def home(request):
     return render(request, 'management/home.html')
@@ -32,7 +33,11 @@ def register_student(request):
     return render(request, 'management/students/register.html', {'form' : form})
 
 def edit_student_details(request, studentid):
-    student = Student.objects.get(pk=studentid)
+    try:
+        student = Student.objects.get(pk=studentid)
+    except ObjectDoesNotExist:
+        return redirect('management-students-view-all')
+        
     if request.method == 'POST':
         form = EditStudentDetails(request.POST)
         if form.is_valid():
@@ -69,14 +74,21 @@ def view_all_students(request):
     return render(request, 'management/students/view-all.html', context)
 
 def student_details(request, studentid):
-    student = Student.objects.get(pk=studentid)
+    try:
+        student = Student.objects.get(pk=studentid)
+    except ObjectDoesNotExist:
+        return redirect('management-students-view-all')
+
     context = {
         'student': student
     }
     return render(request, 'management/students/student-details.html', context)
 
 def delete_student(request, studentid):
-    student = Student.objects.get(pk=studentid)
+    try:
+        student = Student.objects.get(pk=studentid)
+    except ObjectDoesNotExist:
+        return redirect('management-students-view-all')
 
     if request.method == 'POST':
         student.delete()
