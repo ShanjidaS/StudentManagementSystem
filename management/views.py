@@ -6,6 +6,8 @@ from .models import Student, Course
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 
+# Home functions
+
 def home(request):
     return render(request, 'management/home.html')
 
@@ -100,6 +102,8 @@ def delete_student(request, studentid):
     }
     return render(request, 'management/students/delete-student.html', context)
 
+# Course functions
+
 def courses(request):
     return render(request, 'management/courses/courses.html')
 
@@ -130,7 +134,6 @@ def course_details(request, course_id):
         course = Course.objects.get(pk=course_id)
     except ObjectDoesNotExist:
         return redirect('management-courses-view-all')
-
     context = {
         'course': course
     }

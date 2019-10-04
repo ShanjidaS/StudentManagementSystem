@@ -5,7 +5,7 @@
 {% for course in course_list %}
 
     <li> 
-        <a>{{ course|safe }}</a>
+        <a href="{% url 'management-courses-course-details' course_id=course.course_id %}">{{ course|safe }}</a>
     </li>
 
 {% endfor %}
