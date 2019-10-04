@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import RegisterStudent, EditStudentDetails
+from .forms import RegisterStudent, EditStudentDetails, AddCourse
 from django.contrib import messages
 from . import models
-from .models import Student
+from .models import Student, Course
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -99,3 +99,40 @@ def delete_student(request, studentid):
         'student': student
     }
     return render(request, 'management/students/delete-student.html', context)
+
+def courses(request):
+    return render(request, 'management/courses/courses.html')
+
+
+def add_course(request):
+    if request.method == 'POST':
+        form = AddCourse(request.POST)
+        if form.is_valid():
+            obj = models.Course()
+            obj.course_name = form.cleaned_data['course_name']
+            obj.course_level = form.cleaned_data['course_level']
+            obj.course_duration_in_months = form.cleaned_data['course_duration_in_months']
+            obj.course_mode = form.cleaned_data['course_mode']
+            obj.course_credits = form.cleaned_data['course_credits']
+            obj.save()
+            messages.success(request, f'Course successfully added!' )
+    else:
+        form = AddCourse()
+    return render(request, 'management/courses/add-course.html', {'form' : form})
+
+def view_all_courses(request):
+    course_list = Course.objects.all()
+    context = {'course_list': course_list}
+    return render(request, 'management/courses/view-all.html', context)
+
+def course_details(request, course_id):
+    try:
+        course = Course.objects.get(pk=course_id)
+    except ObjectDoesNotExist:
+        return redirect('management-courses-view-all')
+
+    context = {
+        'course': course
+    }
+    return render(request, 'management/courses/course-details.html', context)
+

@@ -1,0 +1,8 @@
+{% extends "management/base.html" %}
+{% block content %}
+    <h3>Courses</h3>
+
+    <a class="nav-item nav-link" href="{% url 'management-courses-add-course' %}">Add new course</a>
+    <a class="nav-item nav-link" href="{% url 'management-courses-view-all' %}">View all courses</a>
+      
+{% endblock content %}

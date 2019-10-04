@@ -1,0 +1,15 @@
+{% extends "management/base.html" %}
+{% block content %}
+        <form method = "POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottm mb-4">Add new course</legend>
+                <div class="overflow-auto mh-480px">
+                    {{ form }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Save</button>
+            </div>
+        </form>
+{% endblock content %}

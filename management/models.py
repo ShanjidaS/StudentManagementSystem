@@ -5,7 +5,7 @@ class Person(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     date_of_birth = models.DateField()
-    email = models.CharField(max_length = 50)
+    email = models.EmailField(max_length = 100)
     phone = models.CharField(max_length=20)
     address = models.CharField(max_length=200)
     objects = models.Manager()
@@ -22,3 +22,16 @@ class Student(Person):
 
     def __str__(self):
         return self.first_name + " " + self.last_name
+
+class Course(models.Model):
+    course_id = models.AutoField(primary_key=True) 
+    course_name = models.CharField(max_length=100)
+    course_level = models.CharField(max_length=50)
+    course_duration_in_months = models.IntegerField()
+    course_mode = models.CharField(max_length=50)
+    course_credits = models.IntegerField()
+    course_fees = models.IntegerField(null=False)
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.course_name

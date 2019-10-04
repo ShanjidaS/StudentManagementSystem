@@ -1,0 +1,13 @@
+{% extends "management/base.html" %}
+{% block content %}
+<h3>All Courses</h3>
+
+{% for course in course_list %}
+
+    <li> 
+        <a>{{ course|safe }}</a>
+    </li>
+
+{% endfor %}
+
+{% endblock content %}
