@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import RegisterStudent, EditStudentDetails, AddCourse
+from .forms import RegisterStudent, EditStudentDetails, AddCourse, EditCourseDetails
 from django.contrib import messages
 from . import models
 from .models import Student, Course
@@ -29,7 +29,7 @@ def register_student(request):
             obj.start_date = form.cleaned_data['start_date']
             obj.end_date = form.cleaned_data['end_date']
             obj.save()
-            messages.success(request, f'Student registered!' )
+            messages.success(request, f'Student successfully registered!' )
     else:
         form = RegisterStudent()
     return render(request, 'management/students/register.html', {'form' : form})
@@ -44,7 +44,7 @@ def edit_student_details(request, studentid):
         form = EditStudentDetails(request.POST)
         if form.is_valid():
             obj = models.Student()
-            obj.student_id = student
+            obj.student_id = student.student_id
             obj.first_name = form.cleaned_data['first_name']
             obj.last_name = form.cleaned_data['last_name']
             obj.date_of_birth = form.cleaned_data['date_of_birth']
@@ -55,6 +55,7 @@ def edit_student_details(request, studentid):
             obj.start_date = form.cleaned_data['start_date']
             obj.end_date = form.cleaned_data['end_date']
             obj.save()
+            messages.success(request, f'Student has been edited' )
     else:
         form = EditStudentDetails(initial={
             'first_name': student.first_name,
@@ -68,7 +69,6 @@ def edit_student_details(request, studentid):
             'end_date': student.end_date,
         })
     return render(request, 'management/students/edit-details.html', {'form' : form})
-
 
 def view_all_students(request):
     student_list = Student.objects.all()
@@ -94,7 +94,7 @@ def delete_student(request, studentid):
 
     if request.method == 'POST':
         student.delete()
-        messages.success(request, "Student successfully deleted!")
+        messages.success(request, f'Student has been deleted' )
         return redirect('management-students-view-all')
 
     context = {
@@ -106,7 +106,6 @@ def delete_student(request, studentid):
 
 def courses(request):
     return render(request, 'management/courses/courses.html')
-
 
 def add_course(request):
     if request.method == 'POST':
