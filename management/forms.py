@@ -27,7 +27,15 @@ class EditStudentDetails(forms.Form):
 class AddCourse(forms.Form):
     course_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
     course_level = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
-    course_duration_in_months = forms.IntegerField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    course_duration_in_months = forms.IntegerField(widget=forms.NumberInput(attrs={'class' : 'form-control'}))
     course_mode = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
-    course_credits = forms.IntegerField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
-    course_fees = forms.IntegerField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    course_credits = forms.IntegerField(widget=forms.NumberInput(attrs={'class' : 'form-control'}))
+    course_fees = forms.IntegerField(widget=forms.NumberInput(attrs={'class' : 'form-control'}))
+
+class EditCourseDetails(forms.Form):
+    course_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    course_level = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    course_duration_in_months = forms.IntegerField(widget=forms.NumberInput(attrs={'class' : 'form-control'}))
+    course_mode = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    course_credits = forms.IntegerField(widget=forms.NumberInput(attrs={'class' : 'form-control'}))
+    course_fees = forms.IntegerField(widget=forms.NumberInput(attrs={'class' : 'form-control'}))

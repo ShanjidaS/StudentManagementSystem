@@ -139,3 +139,33 @@ def course_details(request, course_id):
     }
     return render(request, 'management/courses/course-details.html', context)
 
+def edit_course_details(request, course_id):
+    try:
+        course = Course.objects.get(pk=course_id)
+    except ObjectDoesNotExist:
+        return redirect('management-courses-view-all')
+        
+    if request.method == 'POST':
+        form = EditCourseDetails(request.POST)
+        if form.is_valid():
+            obj = models.Course()
+            obj.course_id = course.course_id
+            obj.course_name = form.cleaned_data['course_name']
+            obj.course_level = form.cleaned_data['course_level']
+            obj.course_duration_in_months = form.cleaned_data['course_duration_in_months']
+            obj.course_mode = form.cleaned_data['course_mode']
+            obj.course_credits = form.cleaned_data['course_credits']
+            obj.course_fees = form.cleaned_data['course_fees']
+            obj.save()
+            messages.success(request, f'Course has been edited' )
+    else:
+        form = EditCourseDetails(initial={
+            'course_name': course.course_name,
+            'course_level': course.course_level,
+            'course_duration_in_months': course.course_duration_in_months,
+            'course_mode': course.course_mode,
+            'course_credits': course.course_credits,
+            'course_fees': course.course_fees,
+        })
+    return render(request, 'management/courses/edit-details.html', {'form' : form})
+

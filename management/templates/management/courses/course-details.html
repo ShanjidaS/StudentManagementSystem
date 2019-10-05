@@ -1,7 +1,11 @@
 {% extends "management/base.html" %} 
 {% block content %}
 <div class=w-75>
-    <div class="float-right"></div>
+    <div class="float-right">
+        <a href="{% url 'management-courses-edit-details' course_id=course.course_id %}" title="Edit" >
+            <i class="fa fa-edit"></i>
+        </a>
+    </div>
     <h4>Course Details</h4>
     <div class="mb-2 underlined-rows">
         <div class="row">
