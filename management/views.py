@@ -168,3 +168,18 @@ def edit_course_details(request, course_id):
         })
     return render(request, 'management/courses/edit-details.html', {'form' : form})
 
+def delete_course(request, course_id):
+    try:
+        course = Course.objects.get(pk=course_id)
+    except ObjectDoesNotExist:
+        return redirect('management-courses-view-all')
+
+    if request.method == 'POST':
+        course.delete()
+        messages.success(request, f'Course has been deleted' )
+        return redirect('management-courses-view-all')
+
+    context = {
+        'course': course
+    }
+    return render(request, 'management/courses/delete-course.html', context)

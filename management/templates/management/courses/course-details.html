@@ -5,6 +5,8 @@
         <a href="{% url 'management-courses-edit-details' course_id=course.course_id %}" title="Edit" >
             <i class="fa fa-edit"></i>
         </a>
+        <a href="{% url 'management-courses-delete-course' course_id=course.course_id %}" title="Delete">
+            <i class="fa fa-trash"></i>
     </div>
     <h4>Course Details</h4>
     <div class="mb-2 underlined-rows">
