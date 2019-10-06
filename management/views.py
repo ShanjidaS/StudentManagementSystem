@@ -187,3 +187,21 @@ def delete_course(request, course_id):
         'course': course
     }
     return render(request, 'management/courses/delete-course.html', context)
+
+# Summary functions
+
+def summary(request):
+    course_list = Course.objects.all()
+    student_list = Student.objects.all()
+    summary_dict = dict()
+    
+    for course in course_list:
+        course_key = str(course)
+        if (course_key not in summary_dict):
+            summary_dict[course_key] = []
+        for student in student_list:
+            if student.course.course_id == course.course_id:
+                summary_dict[course_key].append(student)
+                
+    context = {'summary_dict': summary_dict}
+    return render(request, 'management/summary.html', context)
