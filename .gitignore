@@ -1,1 +1,3 @@
 *.pyc
+management/migrations/
+db.sqlite3
