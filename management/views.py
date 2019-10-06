@@ -29,8 +29,7 @@ def register_student(request):
             obj.phone = form.cleaned_data['phone']
             obj.address = form.cleaned_data['address']
             obj.course = course
-            obj.start_date = form.cleaned_data['start_date']
-            obj.end_date = form.cleaned_data['end_date']
+            obj.enrollment_date = form.cleaned_data['enrollment_date']
             obj.save()
             messages.success(request, f'Student successfully registered!' )
     else:
@@ -58,8 +57,7 @@ def edit_student_details(request, studentid):
             obj.phone = form.cleaned_data['phone']
             obj.address = form.cleaned_data['address']
             obj.course = course
-            obj.start_date = form.cleaned_data['start_date']
-            obj.end_date = form.cleaned_data['end_date']
+            obj.enrollment_date = form.cleaned_data['enrollment_date']
             obj.save()
             messages.success(request, f'Student has been edited' )
     else:
@@ -71,8 +69,7 @@ def edit_student_details(request, studentid):
             'phone': student.phone,
             'address': student.address,
             'course': (student.course.course_id, student.course),
-            'start_date': student.start_date,
-            'end_date': student.end_date,
+            'enrollment_date': student.enrollment_date,
         })
     return render(request, 'management/students/edit-details.html', {'form' : form})
 

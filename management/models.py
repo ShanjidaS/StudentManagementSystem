@@ -28,11 +28,8 @@ class Course(models.Model):
 
 class Student(Person):
     student_id = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
-    #courses = models.ManyToManyField(Course)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    objects = models.Manager()
+    enrollment_date = models.DateField()
 
     def __str__(self):
         return self.first_name + " " + self.last_name
