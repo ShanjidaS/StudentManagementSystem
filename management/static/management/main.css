@@ -90,3 +90,7 @@ body {
   .underlined-rows > .row {
     border-bottom:1px dashed #c1c1c1;
   }
+
+  .no-underline-href:hover {
+    text-decoration: none;
+  }
