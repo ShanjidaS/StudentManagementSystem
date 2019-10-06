@@ -88,9 +88,38 @@ body {
   }
 
   .underlined-rows > .row {
-    border-bottom:1px dashed #c1c1c1;
+    border-bottom:1px solid #c1c1c1;
   }
 
   .no-underline-href:hover {
     text-decoration: none;
+  }
+
+  .back-header {
+    margin-bottom: 9px;
+    background: #5f788a;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -10px;
+  }
+
+  .back-header > a {
+    color: #ffffff;
+  }
+  .back-header > a:hover {
+    color: #dbdbdb;
+    text-decoration: none;
+  }
+  .menu-header {
+    background: #5f788a;
+    height: 40px;
+    color: #ffffff;
+  }
+
+  .list-group-item.custom-list-group-item {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 5px 10px;
   }

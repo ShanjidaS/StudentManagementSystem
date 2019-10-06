@@ -6,13 +6,12 @@ from .models import Course
 class RegisterStudent(forms.Form):
     first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
     last_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
-    date_of_birth = forms.DateField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'class' : 'form-control'}))
     email = forms.EmailField(max_length = 50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
     phone = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class' : 'form-control'}))
     address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class' : 'form-control'}))
     course = forms.ChoiceField(choices=[(course.course_id, course) for course in Course.objects.all()], widget=forms.Select(attrs={'class' : 'form-control'}))
     enrollment_date = forms.DateField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
-    #end_date = forms.DateField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
 
 class EditStudentDetails(forms.Form):
     first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))
@@ -23,7 +22,6 @@ class EditStudentDetails(forms.Form):
     address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class' : 'form-control'}))
     course = forms.ChoiceField(choices=[(course.course_id, course) for course in Course.objects.all()], widget=forms.Select(attrs={'class' : 'form-control'}))
     enrollment_date = forms.DateField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
-    #end_date = forms.DateField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
 
 class AddCourse(forms.Form):
     course_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class' : 'form-control'}))

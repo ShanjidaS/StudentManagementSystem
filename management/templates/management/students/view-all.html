@@ -4,10 +4,12 @@
 
 {% for student in student_list %}
 
-    <li> 
-        <a href="{% url 'management-students-student-details' studentid=student.person_id %}">{{ student|safe }}</a>
-        
-    </li>
+    <ul class="list-group">
+        <li class="list-group-item custom-list-group-item"> 
+            <a href="{% url 'management-students-student-details' studentid=student.person_id %}">{{ student|safe }}</a>
+        </li>
+    </ul>
+    
 
 {% endfor %}
 

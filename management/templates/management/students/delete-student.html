@@ -5,9 +5,11 @@
     {% csrf_token %}
     <h3>Delete details of "{{ student.first_name }}"?</h3>
     <p>
-        <input type='submit' value='Yes' /> 
+        <input type='submit' class="btn btn-danger" value='Yes'/> 
         <a href="{% url 'management-students-student-details' studentid=student.person_id %}">Cancel</a>
     </p>
 </form>
 
 {% endblock content %}
+
+

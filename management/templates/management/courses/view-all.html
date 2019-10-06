@@ -4,9 +4,11 @@
 
 {% for course in course_list %}
 
-    <li> 
-        <a href="{% url 'management-courses-course-details' course_id=course.course_id %}">{{ course|safe }}</a>
-    </li>
+    <ul class="list-group">
+        <li class="list-group-item custom-list-group-item"> 
+            <a href="{% url 'management-courses-course-details' course_id=course.course_id %}">{{ course|safe }}</a>
+        </li>
+    </ul>
 
 {% endfor %}
 
