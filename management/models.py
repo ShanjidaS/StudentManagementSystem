@@ -13,16 +13,6 @@ class Person(models.Model):
     def __str__(self):
         return self.first_name + " " + self.last_name
 
-class Student(Person):
-    student_id = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
-    degree_name = models.CharField(max_length=50)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    objects = models.Manager()
-
-    def __str__(self):
-        return self.first_name + " " + self.last_name
-
 class Course(models.Model):
     course_id = models.AutoField(primary_key=True) 
     course_name = models.CharField(max_length=100)
@@ -30,8 +20,19 @@ class Course(models.Model):
     course_duration_in_months = models.IntegerField()
     course_mode = models.CharField(max_length=50)
     course_credits = models.IntegerField()
-    course_fees = models.IntegerField(null=False)
+    course_fees = models.IntegerField()
     objects = models.Manager()
 
     def __str__(self):
-        return self.course_name
+        return self.course_name + " " + self.course_level + " " + self.course_mode
+
+class Student(Person):
+    student_id = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
+    #courses = models.ManyToManyField(Course)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name

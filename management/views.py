@@ -18,6 +18,9 @@ def register_student(request):
     if request.method == 'POST':
         form = RegisterStudent(request.POST)
         if form.is_valid():
+            course_id = form.cleaned_data['course']
+            course = Course.objects.get(pk=course_id)
+
             obj = models.Student()
             obj.first_name = form.cleaned_data['first_name']
             obj.last_name = form.cleaned_data['last_name']
@@ -25,7 +28,7 @@ def register_student(request):
             obj.email = form.cleaned_data['email']
             obj.phone = form.cleaned_data['phone']
             obj.address = form.cleaned_data['address']
-            obj.degree_name = form.cleaned_data['degree_name']
+            obj.course = course
             obj.start_date = form.cleaned_data['start_date']
             obj.end_date = form.cleaned_data['end_date']
             obj.save()
@@ -43,6 +46,9 @@ def edit_student_details(request, studentid):
     if request.method == 'POST':
         form = EditStudentDetails(request.POST)
         if form.is_valid():
+            course_id = form.cleaned_data['course']
+            course = Course.objects.get(pk=course_id)
+
             obj = models.Student()
             obj.student_id = student.student_id
             obj.first_name = form.cleaned_data['first_name']
@@ -51,7 +57,7 @@ def edit_student_details(request, studentid):
             obj.email = form.cleaned_data['email']
             obj.phone = form.cleaned_data['phone']
             obj.address = form.cleaned_data['address']
-            obj.degree_name = form.cleaned_data['degree_name']
+            obj.course = course
             obj.start_date = form.cleaned_data['start_date']
             obj.end_date = form.cleaned_data['end_date']
             obj.save()
@@ -64,7 +70,7 @@ def edit_student_details(request, studentid):
             'email': student.email,
             'phone': student.phone,
             'address': student.address,
-            'degree_name': student.degree_name,
+            'course': (student.course.course_id, student.course),
             'start_date': student.start_date,
             'end_date': student.end_date,
         })
@@ -117,6 +123,7 @@ def add_course(request):
             obj.course_duration_in_months = form.cleaned_data['course_duration_in_months']
             obj.course_mode = form.cleaned_data['course_mode']
             obj.course_credits = form.cleaned_data['course_credits']
+            obj.course_fees = form.cleaned_data['course_fees']
             obj.save()
             messages.success(request, f'Course successfully added!' )
     else:
