@@ -127,7 +127,7 @@ pbr==5.4.3
 pep8==1.7.1
 pickleshare==0.7.5
 Pillow==6.2.0
-pipenv==2018.11.26
+pipenv==2022.1.8
 pipreqs==0.4.9
 pkginfo==1.5.0.1
 pluggy==0.13.0
